@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 
 function App() {
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const appInsights = new ApplicationInsights({
+      config: {
+        connectionString: 'InstrumentationKey=579f6949-7510-465f-9b15-17153a644606;IngestionEndpoint=https://japaneast-1.in.applicationinsights.azure.com/;LiveEndpoint=https://japaneast.livediagnostics.monitor.azure.com/;ApplicationId=47c536d9-f6f6-4048-a7ef-d43d1313c8a4',
+      },
+    })
+    appInsights.loadAppInsights()
+    appInsights.trackPageView()
+  }, [])
 
   return (
     <>
