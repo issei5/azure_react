@@ -2,14 +2,13 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { appInsights } from './telemetry';
 
 function App() {
   const [count, setCount] = useState(0)
   const [apiResponse, setApiResponse] = useState("")
 
   const callApi = () => {
-    fetch("http://48.218.48.123:5000")
+    fetch("https://48.218.48.123:5000")
       .then(res => res.text())
       .then(text => setApiResponse(text))
       .catch(err => console.error(err));
